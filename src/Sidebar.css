@@ -15,10 +15,22 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: 1px solid lightgray;
+  /* border: 1px solid lightgray; */
   border-bottom: 0;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   background-color: white;
   padding-bottom: 10px;
+}
+.sidebar__top > img {
+  margin-bottom: -20px; /*Cutting into image */
+  width: 100%;
+  height: 60px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  object-fit: cover; /*picture does not get stretched*/
+}
+
+.sidebar__stats {
+  background-color: white;
 }
