@@ -1,0 +1,23 @@
+.headerItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 20px;
+  cursor: pointer;
+  color: whitesmoke;
+}
+
+.headerItem:hover {
+  color: white;
+}
+
+.headerItem__title {
+  font-size: 11px !important;
+  font-weight: 400;
+}
+
+.headerItem__icon {
+  object-fit: contain;
+  width: 25px !important;
+  height: 25px !important;
+}
