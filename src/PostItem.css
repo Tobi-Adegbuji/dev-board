@@ -1,0 +1,17 @@
+.postItem {
+  display: flex;
+  align-items: center;
+  margin-top: 15px;
+  color: gray;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.postItem:hover {
+  border-radius: 10px;
+  background-color: whitesmoke;
+}
+
+.postItem > h4 {
+  margin-left: 4px;
+}
