@@ -1,0 +1,16 @@
+.login {
+  display: grid;
+  place-items: center;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 100px;
+  padding-bottom: 100px;
+  background-color: #161b22;
+}
+
+.login > img {
+  object-fit: contain;
+  height: 150px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
