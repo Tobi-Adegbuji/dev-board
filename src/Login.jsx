@@ -1,14 +1,44 @@
 import { Box, Button, TextField, Typography } from "@material-ui/core";
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { auth } from "./firebase";
+import { login } from "./features/userSlice";
 import "./Login.css";
 function Login() {
   const [email, setEmail] = useState("");
-  const [passsword, setPassword] = useState("");
+  const [password, setPassword] = useState("");
   const [name, setName] = useState("");
+  const [profilePic, setProfilePic] = useState("");
+  //Used to push user into store
+  const dispatch = useDispatch();
 
-  const register = () => {};
-  const login = (e) => {
+  const register = () => {
+    if (!name) {
+      return alert("Please enter a full name.");
+    }
+
+    auth
+      .createUserWithEmailAndPassword(email, password)
+      .then((userAuth) => {
+        userAuth.user
+          .updateProfile({
+            displayName: name,
+            photoURL: profilePic,
+          })
+          .then(() => {
+            dispatch(
+              login({
+                email: userAuth.user.email,
+                uid: userAuth.user.uid,
+                displayName: name,
+                photoUrl: profilePic,
+              })
+            );
+          });
+      })
+      .catch((error) => alert(error));
+  };
+  const loginApp = (e) => {
     e.preventDefault();
   };
 
@@ -25,6 +55,8 @@ function Login() {
             id="outlined-basic"
             placeholder="Full Name (Required)"
             type="text"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
             className="login__input"
             variant="outlined"
           />
@@ -34,6 +66,8 @@ function Login() {
             id="outlined-basic"
             placeholder="Profile Pic URL (optional)"
             type="text"
+            onChange={(e) => setProfilePic(e.target.value)}
+            value={profilePic}
             className="login__input"
             variant="outlined"
           />
@@ -43,7 +77,9 @@ function Login() {
             mb={5}
             id="outlined-basic"
             placeholder="Email"
+            value={email}
             type="email"
+            onChange={(e) => setEmail(e.target.value)}
             className="login__input"
             variant="outlined"
           />
@@ -53,6 +89,8 @@ function Login() {
             id="outlined-basic"
             placeholder="Password"
             type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
             className="login__input"
             variant="outlined"
           />
